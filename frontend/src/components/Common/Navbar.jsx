@@ -79,7 +79,7 @@ const Navbar = () => {
                 <h2 className='text-xl font-semibold mb-4'>TheShop</h2>
                 <nav className='space-y-4'>
                     {shopManager.categories.map((category) => (
-                        <Link to={`/collections/all?category=${category}`} className='text-gray-700 hover:text-black text-sm font-medium uppercase'>
+                        <Link onClick={toggleNavDrawer} to={`/collections/all?category=${category}`} className='block text-gray-700 hover:text-black text-sm font-medium uppercase'>
                             {category}
                         </Link>
                     ))}
