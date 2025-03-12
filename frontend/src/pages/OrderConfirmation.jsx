@@ -62,7 +62,7 @@ const OrderConfirmation = () => {
             </div>
             <div className="flex flex-col gap-3">
                 {checkout.checkoutItems.map((item)=> (
-                    <div key={item.productId} className='flex items-center'>
+                    <div key={item.productId} className='flex gap-2 items-center'>
                         <img src={item.image} alt="" className='w-16 h-16 object-cover rounded-md mr-4'/>
                         <div className="">
                             <h4 className='text-md font-semibold'>{item.name}</h4>
