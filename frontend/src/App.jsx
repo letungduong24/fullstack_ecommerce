@@ -19,7 +19,6 @@ import ProductManager from "./components/Admin/ProductManager";
 import AdminOrderDetail from "./components/Admin/AdminOrderDetail";
 import EditProduct from "./components/Admin/EditProduct";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchShopManager } from "./redux/slices/shopManagerSlice";
