@@ -35,7 +35,7 @@ const OrderConfirmation = () => {
         <h1 className='text-4xl font-bold text-center text-gray-700 mb-8'>Cảm ơn bạn vì đã mua hàng</h1>
         {checkout && (
         <div className='p-6 rounded-lg border'>
-            <div className="flex justify-between mb-10">
+            <div className="flex flex-col md:flex-row justify-between mb-10">
                 <div className="">
                     <h2 className='text-xl font-semibold'>Mã đơn hàng: {checkout._id}</h2>
                     <p className='text-gray-500'>Thời gian: {new Date(checkout.createdAt).toLocaleDateString()}</p>
