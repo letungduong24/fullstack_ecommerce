@@ -78,11 +78,11 @@ const Navbar = () => {
             <div className="flex-grow p-4 overflow-y-auto">
                 <h2 className='text-xl font-semibold mb-4'>TheShop</h2>
                 <nav className='space-y-4'>
-                    <Link to='/collections/all' onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>Mũ nam</Link>
-                    <Link to='/' onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>Túi nam</Link>
-                    <Link to='/' onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>Ao nam</Link>
-                    <Link to='/' onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>Quần nam</Link>
-
+                    {shopManager.categories.map((category) => (
+                        <Link to={`/collections/all?category=${category}`} className='text-gray-700 hover:text-black text-sm font-medium uppercase'>
+                            {category}
+                        </Link>
+                    ))}
                 </nav>
             </div>
         </div>
