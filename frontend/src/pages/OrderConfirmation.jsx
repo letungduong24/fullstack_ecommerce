@@ -37,7 +37,7 @@ const OrderConfirmation = () => {
         <div className='p-6 rounded-lg border'>
             <div className="flex justify-between mb-10">
                 <div className="">
-                    <h2 className='text-xl font-semibold'>Mã đơn hàng: {checkout.id}</h2>
+                    <h2 className='text-xl font-semibold'>Mã đơn hàng: {checkout._id}</h2>
                     <p className='text-gray-500'>Thời gian: {new Date(checkout.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="">
@@ -62,7 +62,7 @@ const OrderConfirmation = () => {
             </div>
             <div className="flex flex-col gap-3">
                 {checkout.checkoutItems.map((item)=> (
-                    <div key={item.productId} className='flex gap-2 items-center'>
+                    <div key={item.productId} className='flex gap-1 items-center'>
                         <img src={item.image} alt="" className='w-16 h-16 object-cover rounded-md mr-4'/>
                         <div className="">
                             <h4 className='text-md font-semibold'>{item.name}</h4>
