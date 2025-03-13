@@ -16,7 +16,7 @@ const OrderConfirmation = () => {
         localStorage.removeItem('cart')
     }
     else{
-        navigate('/my-order')
+        navigate('/profile')
     }
   }, [checkout, dispatch, navigate])
   
