@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import Hero from '../components/Layout/Hero'
-import ItemCollectionSection from '../components/Products/ItemCollectionSection'
 import NewArrival from '../components/Products/NewArrival'
 import ProductsDetails from '../components/Products/ProductsDetails'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchBestSeller } from '../redux/slices/productsSlice'
-import Loading from '../components/Common/Loading'
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -13,7 +11,7 @@ const Home = () => {
     useEffect(() => {
       dispatch(fetchBestSeller())
     }, [dispatch])
-
+  
   return (
     <>
         <Hero />

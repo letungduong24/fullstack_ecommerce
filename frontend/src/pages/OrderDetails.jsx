@@ -27,8 +27,8 @@ const OrderDetails = () => {
     <div className='max-w-7xl mx-auto p-4 sm:p-6'>
         <h2 className='text-2xl md:text-3xl font-bold mb-6'>Chi tiết đơn hàng</h2>
         <div className="w-full rounded-lg border border-gray-600 p-4">
-            <div className="flex justify-between mb-1">
-                <p className='font-bold'>Mã đơn hàng: {orderDetails && orderDetails.id}</p>
+            <div className="flex flex-col justify-between mb-1">
+                <p className='font-bold'>Mã đơn hàng: {orderDetails && orderDetails._id}</p>
                 <div className="w-fit">
                 <p className={`text-sm font-medium px-1 py-0.5 rounded-lg ${orderDetails && orderDetails.status === 'Đã giao' ? 'bg-emerald-200 text-emerald-900' : orderDetails && orderDetails.status === 'Đang giao' ? 'bg-blue-300 text-blue-900' : orderDetails && orderDetails.status === 'Chờ duyệt' ? 'bg-amber-300 text-amber-900' : 'bg-red-300 text-red-900' }`}>{orderDetails && orderDetails.status}</p>
                 </div>
