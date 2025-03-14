@@ -7,7 +7,7 @@ import { fetchBestSeller } from '../redux/slices/productsSlice'
 
 const Home = () => {
     const dispatch = useDispatch()
-    const {bestSeller, loading, error} = useSelector((state) => state.product)
+    const {bestSeller} = useSelector((state) => state.product)
     useEffect(() => {
       dispatch(fetchBestSeller())
     }, [dispatch])
