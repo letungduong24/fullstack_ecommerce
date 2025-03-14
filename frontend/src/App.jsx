@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/Common/ProtectedRoute";
 import {useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchShopManager } from "./redux/slices/shopManagerSlice";
+import FullLoading from "./components/Common/FullLoading";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,8 +32,10 @@ function App() {
     dispatch(fetchShopManager());
   }, [dispatch]);
 
+  if (!shopManager) {
+    return <FullLoading />;
+  }
   return (
-    shopManager && (
         <>
         <title>{shopManager.name}</title>
         <BrowserRouter>
@@ -64,7 +67,6 @@ function App() {
           </Routes>
         </BrowserRouter>
         </>
-    )
   );
 }
 
