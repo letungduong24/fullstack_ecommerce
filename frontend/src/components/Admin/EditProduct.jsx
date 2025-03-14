@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FiXCircle } from "react-icons/fi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { productDetails, updateProduct } from "../../redux/slices/adminProductSlice";
+import {
+  productDetails,
+  updateProduct,
+} from "../../redux/slices/adminProductSlice";
 import Loading from "../Common/Loading";
 import axios from "axios";
 import { toast } from "sonner";
@@ -13,6 +16,8 @@ const EditProduct = () => {
   const { selectedProduct, loading } = useSelector(
     (state) => state.adminProduct
   );
+  const { shopManager } = useSelector((state) => state.shopManager);
+
   const { id } = useParams();
   const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
@@ -72,23 +77,23 @@ const EditProduct = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const isFormInvalid = Object.values(formData).some(
-          (value) =>
-            value === "" ||
-            value === null ||
-            value === undefined ||
-            (Array.isArray(value) && value.length === 0)
-        );
-    
-        if (isFormInvalid) {
-          toast.error("Vui lòng điền đầy đủ thông tin!");
-          console.log(formData)
-          return;
-        }
-    
-    if(uploading){
-      return toast.error('Đang tải lên ảnh, chưa thể lưu!')
+      (value) =>
+        value === "" ||
+        value === null ||
+        value === undefined ||
+        (Array.isArray(value) && value.length === 0)
+    );
+
+    if (isFormInvalid) {
+      toast.error("Vui lòng điền đầy đủ thông tin!");
+      console.log(formData);
+      return;
     }
-    dispatch(updateProduct({id, productData: formData}))
+
+    if (uploading) {
+      return toast.error("Đang tải lên ảnh, chưa thể lưu!");
+    }
+    dispatch(updateProduct({ id, productData: formData }));
   };
 
   const handleImageUpload = async (e) => {
@@ -179,14 +184,21 @@ const EditProduct = () => {
         </div>
         <div className="mb-4 w-full">
           <label className="text-sm text-gray-600 block mb-1">Thể loại</label>
-          <input
+          <select
             name="category"
             onChange={handleFormChange}
-            value={formData.category}
+            value={formData.category || ""}
             className="border-gray-600 border w-full p-2 rounded-lg"
-            type="text"
-            required
-          />
+          >
+            <option value="" disabled>
+              Chọn thể loại
+            </option>
+            {shopManager.categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-4 w-full">
           <label className="text-sm text-gray-600 block mb-1">Hãng</label>
@@ -213,22 +225,24 @@ const EditProduct = () => {
         <div className="mb-4 w-full">
           <label className="text-sm text-gray-600 block mb-1">Size</label>
           <div className="flex gap-5 flex-wrap">
-                {sizeOptions.map((size) => (
-                  <label key={size} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      value={size}
-                      checked={formData.sizes.includes(size)}
-                      onChange={handleSizeChange}
-                      className="accent-blue-600"
-                    />
-                    <span>{size}</span>
-                  </label>
-                ))}
-              </div>
+            {sizeOptions.map((size) => (
+              <label key={size} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  value={size}
+                  checked={formData.sizes.includes(size)}
+                  onChange={handleSizeChange}
+                  className="accent-blue-600"
+                />
+                <span>{size}</span>
+              </label>
+            ))}
+          </div>
         </div>
         <div className="mb-4 w-full">
-          <label className="text-sm text-gray-600 block mb-1">Màu sắc (cách nhau bởi dấu ,)</label>
+          <label className="text-sm text-gray-600 block mb-1">
+            Màu sắc (cách nhau bởi dấu ,)
+          </label>
           <input
             name="colors"
             onChange={(e) => {
@@ -236,7 +250,7 @@ const EditProduct = () => {
                 ...formData,
                 colors: e.target.value.split(",").map((color) => color.trim()),
               });
-            }}   
+            }}
             value={formData.colors.join(",")}
             className="border-gray-600 border w-full p-2 rounded-lg"
             type="text"
@@ -262,7 +276,6 @@ const EditProduct = () => {
             id="imageUpload"
             type="file"
             onChange={handleImageUpload}
-
           />
         </div>
         <div className="mb-4">
