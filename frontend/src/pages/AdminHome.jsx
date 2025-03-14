@@ -25,15 +25,15 @@ const AdminHome = () => {
     <div className='flex flex-col h-full'>
         <h1 className='text-3xl font-bold mb-6'>Trang chủ</h1>
         <h2 className='mb-4 font-semibold text-2xl'>Thống kê</h2>
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        <div className="grid sm:grid-cols-2 gap-6 mb-6">
             {totalOrder && totalSales ? (
                 <>
-                    <div className="p-4 shadow-md rounded-lg flex-col flex items-center justify-center">
+                    <div className=" p-4 shadow-md rounded-lg flex-col flex items-center justify-center">
                         <h2 className=' font-semibold flex items-center gap-2 text-gray-600'>
                             <GrMoney className='hidden sm:block' />
                             Doanh thu
                         </h2>
-                        <p className='text-2xl font-bold text-blue-600'>{totalSales}</p>
+                        <p className='text-2xl font-bold text-blue-600'>{totalSales.toFixed(2)}</p>
                     </div>
                     <div className="p-4 shadow-md rounded-lg flex-col flex items-center justify-center">
                         <h2 className=' font-semibold flex items-center gap-2 text-gray-600'>
