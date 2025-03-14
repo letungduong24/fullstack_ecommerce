@@ -27,7 +27,7 @@ const AdminOrderDetail = () => {
         <h1 className='text-3xl font-bold mb-6'>Quản lý đơn hàng</h1>
         <div className="flex h-full shadow-md w-full p-4 gap-3 flex-col">
             <div className="flex justify-between mb-1">
-                <p className='font-bold'>Mã đơn hàng: {orderDetails && orderDetails.id}</p>
+                <p className='font-bold'>Mã đơn hàng: {orderDetails && orderDetails._id}</p>
             </div>
             <div className="flex justify-between mb-4">
                 <p className='text-sm'>{orderDetails && new Date(orderDetails.paidAt).toLocaleDateString()}</p>
