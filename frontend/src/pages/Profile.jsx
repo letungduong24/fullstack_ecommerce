@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Common/Loading'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../redux/slices/authSlice';
+import { clearCart } from '../redux/slices/cartSlice';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearCart());
   };
 
   return (

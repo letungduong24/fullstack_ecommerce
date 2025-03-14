@@ -54,11 +54,11 @@ const AdminOrderDetail = () => {
             <div className="flex flex-col gap-3 mb-4">
                 {orderDetails && orderDetails.orderItems.map((item)=> (
                     <div key={item.productId} className='flex items-center'>
-                        <Link to={`/product/${id}`}>
+                        <Link to={`/product/${item.productId}`}>
                             <img src={item.image} alt="" className='w-16 h-16 object-cover rounded-md mr-4'/>
                         </Link>
                         <div className="">
-                            <Link to={`/product/${id}`} className='text-md font-semibold underline text-blue-600'>{item.name}</Link>
+                            <Link to={`/product/${item.productId}`} className='text-md font-semibold underline text-blue-600'>{item.name}</Link>
                             <p className='text-sm text-gray-500'>
                                 {item.color} | {item.size}
                             </p>
