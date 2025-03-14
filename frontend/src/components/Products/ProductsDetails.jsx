@@ -61,7 +61,7 @@ const ProductsDetails = ({id}) => {
         setIsButtonDisabled(false)
     })
   }
-  if (loading) {
+  if (!selectedProduct || !similarProducts || user) {
     return <Loading />;
   }
 
@@ -104,7 +104,6 @@ const ProductsDetails = ({id}) => {
 
                 <div className="md:w-1/2 md:ml-10">
                     <h1 className='text-2xl md:text-3xl font-bold mb-2'>{selectedProduct?.name}</h1>
-                    <p className='text-lg text-gray-600 mb-1 line-through'>{selectedProduct?.originalPrice} vnđ</p>
                     <p className='text-xl text-gray-600 mb-4 font-semibold'>{selectedProduct?.price} vnđ</p>
                     <p className='text-gray-600 mb-4'>{selectedProduct?.description}</p>
                     <div className="mb-4">
