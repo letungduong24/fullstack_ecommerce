@@ -294,7 +294,7 @@ const EditProduct = () => {
                     alt={`Hình ảnh ${index + 1}`}
                     className="w-full h-full object-cover rounded-lg"
                   />
-                  <button
+                  <button type="button"
                     onClick={() =>
                       setFormData({
                         ...formData,
@@ -321,7 +321,7 @@ const EditProduct = () => {
         </div>
 
         <div className="mb-4 w-full flex gap-2">
-          <button className="bg-blue-600 hover:bg-blue-500 transition-all duration-300 rounded-lg w-full py-2 text-white cursor-pointer">
+          <button type="submit" className="bg-blue-600 hover:bg-blue-500 transition-all duration-300 rounded-lg w-full py-2 text-white cursor-pointer">
             Lưu
           </button>
           <Link

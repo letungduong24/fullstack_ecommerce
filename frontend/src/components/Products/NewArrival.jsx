@@ -3,6 +3,8 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchNewArrival } from '../../redux/slices/productsSlice'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import Loading from '../Common/Loading'
 const NewArrival = () => {
   const dispatch = useDispatch()
@@ -75,18 +77,24 @@ const NewArrival = () => {
           </button>
         </div>
       </div>
-      <div ref={scrollRef} onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUpOrLeave} onMouseMove={handleOnMouseMove} className=" hide-scrollbar container mx-auto overflow-x-scroll flex space-x-5 px-8 rounded-2xl">
-        {newArrivalProducts && newArrivalProducts.map((product) => (
-          <div className="flex-none w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] relative" key={product.id}>
-            <img className='w-full h-full object-cover rounded-2xl' draggable='false' src={product.images[0].url} alt="" />
-            <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md text-white p-4 rounded-b-2xl">
-              <Link to={`/product/${product._id}`} className='block'>
-                <h4 className='font-medium'>{product.name}</h4>
-                <p className='mt-1'>{product.price} vnđ</p>
-              </Link>
-            </div>
-          </div>
-        ))}
+      <div ref={scrollRef} onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUpOrLeave} onMouseMove={handleOnMouseMove} className="hide-scrollbar container mx-auto overflow-x-scroll flex space-x-5 px-8 rounded-2xl">
+        {loading
+          ? Array.from({ length: 5 }).map((_, index) => (
+              <div key={index} className="flex-none w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] relative">
+                <Skeleton height="100%" width="100%" borderRadius="16px" />
+              </div>
+            ))
+          : newArrivalProducts && newArrivalProducts.map((product) => (
+              <div className="flex-none w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] relative" key={product.id}>
+                <img className='w-full h-full object-cover rounded-2xl' draggable='false' src={product.images[0].url} alt="" />
+                <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md text-white p-4 rounded-b-2xl">
+                  <Link to={`/product/${product._id}`} className='block'>
+                    <h4 className='font-medium'>{product.name}</h4>
+                    <p className='mt-1'>{product.price} vnđ</p>
+                  </Link>
+                </div>
+              </div>
+            ))}
       </div>
     </section>
   )
